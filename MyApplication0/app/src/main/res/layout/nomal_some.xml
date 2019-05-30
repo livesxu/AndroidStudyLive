@@ -114,12 +114,22 @@
 
     <!--android:theme="@android:style/Theme"样式-->
     <DatePicker
+        android:id="@+id/datePicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:theme="@android:style/Theme"
         android:layout_weight="1"
         >
     </DatePicker>
+
+    <TimePicker
+        android:id="@+id/timerPicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:theme="@android:style/Theme"
+        >
+
+    </TimePicker>
 
 
 </LinearLayout>
