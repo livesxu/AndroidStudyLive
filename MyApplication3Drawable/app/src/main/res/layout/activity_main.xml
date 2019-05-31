@@ -28,6 +28,13 @@
             android:text="Button"
             android:background="@drawable/edittext_shape"/>
 
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button1"
+            android:background="@drawable/btn_bg"/>
+
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
