@@ -33,7 +33,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Button1"
+            android:textColor="@drawable/btn_text"
             android:background="@drawable/btn_bg"/>
+
+        <!--//checkBox的选中效果与否是由button属性控制的-->
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="apple"
+            android:button="@drawable/checkbox_btn"/>
 
 
     </LinearLayout>
