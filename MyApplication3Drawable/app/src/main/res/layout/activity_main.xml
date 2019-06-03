@@ -43,6 +43,17 @@
             android:text="apple"
             android:button="@drawable/checkbox_btn"/>
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:progressDrawable="@drawable/progress"
+            android:layout_margin="4dp"
+            android:max="100"
+            android:progress="40"
+            />
+
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
