@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         String passwordString = password.getText().toString();
 
         if (TextUtils.isEmpty(accountString) || TextUtils.isEmpty(passwordString)) {
-
+//            getApplicationContext()
             Toast.makeText(this,"请填写完整信息",Toast.LENGTH_SHORT).show();
 
             return;
