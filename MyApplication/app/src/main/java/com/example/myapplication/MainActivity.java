@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -29,19 +30,26 @@ public class MainActivity extends AppCompatActivity {
         account = findViewById(R.id.accountId);
         password = findViewById(R.id.passwordId);
 
-        try {
-            File file = new File(getFilesDir(),"/qqinfo.txt");
-            BufferedReader reader = new BufferedReader(new FileReader(file));
-            String info = reader.readLine();
-            if (info.contains("#")){
-                String[] datas = info.split("#");
-
-                account.setText(datas[0]);
-                password.setText(datas[1]);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//            File file = new File(getFilesDir(),"/qqinfo.txt");
+//            BufferedReader reader = new BufferedReader(new FileReader(file));
+//            String info = reader.readLine();
+//            if (info.contains("#")){
+//                String[] datas = info.split("#");
+//
+//                account.setText(datas[0]);
+//                password.setText(datas[1]);
+//            }
+//            reader.close();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+        //从SharedPreferences 取值
+        SharedPreferences sp = getSharedPreferences("qqinfo",MODE_PRIVATE);
+        String accountString = sp.getString("account","");
+        String passwordString = sp.getString("password","");
+        account.setText(accountString);
+        password.setText(passwordString);
     }
 
     public void loginAction (View view) {
@@ -55,15 +63,22 @@ public class MainActivity extends AppCompatActivity {
 
             return;
         }
-        //填写的信息保存到本地
-        try {
-            //缓存目录 getCacheDir() file目录 getFilesDir()
-            File file = new File(getFilesDir(),"/qqinfo.txt");
-            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-            writer.write(accountString + "#" + passwordString);
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        //填写的信息保存到本地
+//        try {
+//            //缓存目录 getCacheDir() file目录 getFilesDir()
+//            File file = new File(getFilesDir(),"/qqinfo.txt");
+//            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+//            writer.write(accountString + "#" + passwordString);
+//            writer.close();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
+        //SharedPreferences 保存
+        SharedPreferences sp = getSharedPreferences("qqinfo",MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString("account",accountString);
+        editor.putString("password",passwordString);
+        editor.commit();
     }
 }
