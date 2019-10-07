@@ -7,6 +7,15 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class MainActivity extends AppCompatActivity {
 
     private EditText account;
@@ -19,6 +28,20 @@ public class MainActivity extends AppCompatActivity {
 
         account = findViewById(R.id.accountId);
         password = findViewById(R.id.passwordId);
+
+        try {
+            File file = new File(getFilesDir(),"/qqinfo.txt");
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            String info = reader.readLine();
+            if (info.contains("#")){
+                String[] datas = info.split("#");
+
+                account.setText(datas[0]);
+                password.setText(datas[1]);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void loginAction (View view) {
@@ -33,6 +56,14 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         //填写的信息保存到本地
-
+        try {
+            //缓存目录 getCacheDir() file目录 getFilesDir()
+            File file = new File(getFilesDir(),"/qqinfo.txt");
+            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+            writer.write(accountString + "#" + passwordString);
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

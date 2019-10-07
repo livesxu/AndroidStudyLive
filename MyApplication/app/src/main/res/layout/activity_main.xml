@@ -34,6 +34,7 @@
                 android:id="@+id/accountId"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="textCapCharacters"
                 android:hint="请输入账号"/>
 
         </LinearLayout>
@@ -53,6 +54,7 @@
                 android:id="@+id/passwordId"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="numberPassword"
                 android:hint="请输入密码"/>
 
         </LinearLayout>
