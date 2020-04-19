@@ -8,6 +8,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.BaseAdapter;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,6 +32,16 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        ListView listView = findViewById(R.id.listview);
+        ArrayList<String> strs = new ArrayList<>();
+        for (int i = 0;i< 300;i++) {
+
+            strs.add("测试" + i);
+        }
+//        查看子类和继承关系:Type Hierarchy 快捷键ctr + H
+        MyAdapter adapter = new MyAdapter(this,strs);
+        listView.setAdapter(adapter);
     }
 
     @Override
