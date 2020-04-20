@@ -17,6 +17,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,10 +38,13 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<String> strs = new ArrayList<>();
         for (int i = 0;i< 300;i++) {
 
-            strs.add("测试" + i);
+            strs.add("测试TT " + i);
         }
 //        查看子类和继承关系:Type Hierarchy 快捷键ctr + H
-        MyAdapter adapter = new MyAdapter(this,strs);
+//        MyAdapter adapter = new MyAdapter(this,strs);
+
+        //错误提示 option + enter
+        NextAdapter adapter = new NextAdapter(strs);
         listView.setAdapter(adapter);
     }
 
