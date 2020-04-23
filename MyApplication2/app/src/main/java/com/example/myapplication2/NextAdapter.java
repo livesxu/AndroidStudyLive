@@ -1,6 +1,8 @@
 package com.example.myapplication2;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -34,8 +36,17 @@ public class NextAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        TextView textView = new TextView(parent.getContext());
-        textView.setTextSize(20);
+//        TextView textView = new TextView(parent.getContext());
+//        textView.setTextSize(20);
+//        textView.setText(datas.get(position));
+
+        if (convertView == null) {
+
+            LayoutInflater from = LayoutInflater.from(parent.getContext());
+            View inflate = from.inflate(R.layout.next_item, null);
+            convertView = inflate;
+        }
+        TextView textView = (TextView)convertView.findViewById(R.id.text1);
         textView.setText(datas.get(position));
 
         return textView;
