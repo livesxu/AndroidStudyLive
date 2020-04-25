@@ -11,8 +11,10 @@ import android.view.MenuItem;
 import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -36,15 +38,28 @@ public class MainActivity extends AppCompatActivity {
 
         ListView listView = findViewById(R.id.listview);
         ArrayList<String> strs = new ArrayList<>();
+        ArrayList<HashMap<String,Object>> maps = new ArrayList<>();
         for (int i = 0;i< 300;i++) {
 
             strs.add("测试TT " + i);
+            HashMap<String,Object> data = new HashMap<String, Object>();
+            data.put("str","测试" + i);
+            maps.add(data);
         }
 //        查看子类和继承关系:Type Hierarchy 快捷键ctr + H
 //        MyAdapter adapter = new MyAdapter(this,strs);
 
         //错误提示 option + enter
-        NextAdapter adapter = new NextAdapter(strs);
+//        NextAdapter adapter = new NextAdapter(strs);
+//        listView.setAdapter(adapter);
+
+        SimpleAdapter adapter = new SimpleAdapter(
+                this,
+                maps,
+                android.R.layout.simple_list_item_1,
+                new String[]{"str"},
+                new int[]{android.R.id.text1}
+        );
         listView.setAdapter(adapter);
     }
 
