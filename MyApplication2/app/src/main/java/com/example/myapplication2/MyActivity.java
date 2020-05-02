@@ -13,9 +13,10 @@ public class MyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_my);
 
         Intent intent = getIntent();
-        String title = intent.getStringExtra("title");
+//        String title = intent.getStringExtra("title");
+        Person person = (Person) intent.getSerializableExtra("person");
 
         TextView textView = findViewById(R.id.textView);
-        textView.setText(title);
+        textView.setText(person.name);
     }
 }

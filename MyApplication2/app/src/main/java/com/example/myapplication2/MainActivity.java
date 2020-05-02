@@ -17,9 +17,15 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+class Person implements Serializable {
+    String name;
+    int age;
+}
 
 public class MainActivity extends AppCompatActivity {
 
@@ -70,20 +76,24 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+//                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+//
+//                AlertDialog dialog = builder.setTitle("提示").
+//                        setMessage("消息体").
+//                        setNegativeButton("取消",null).
+//                        setPositiveButton("确定",null).
+//                        create();
+//                dialog.show();
 
-                AlertDialog dialog = builder.setTitle("提示").
-                        setMessage("消息体").
-                        setNegativeButton("取消",null).
-                        setPositiveButton("确定",null).
-                        create();
-                dialog.show();
+                Intent intent = new Intent();
+                intent.putExtra("title","第二个控制器");
 
-//                Intent intent = new Intent();
-//                intent.putExtra("title","第二个控制器");
-////                intent.setClass(MainActivity.this,MyActivity.class);
-//                intent.setAction("haha");
-//                startActivity(intent);
+                Person person = new Person();
+                person.name = "bobo";
+                intent.putExtra("person",person);
+//                intent.setClass(MainActivity.this,MyActivity.class);
+                intent.setAction("haha");
+                startActivity(intent);
             }
         });
         listView.setOnScrollListener(new AbsListView.OnScrollListener() {
