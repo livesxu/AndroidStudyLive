@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -69,11 +70,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Intent intent = new Intent();
-                intent.putExtra("title","第二个控制器");
-//                intent.setClass(MainActivity.this,MyActivity.class);
-                intent.setAction("haha");
-                startActivity(intent);
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+
+                AlertDialog dialog = builder.setTitle("提示").
+                        setMessage("消息体").
+                        setNegativeButton("取消",null).
+                        setPositiveButton("确定",null).
+                        create();
+                dialog.show();
+
+//                Intent intent = new Intent();
+//                intent.putExtra("title","第二个控制器");
+////                intent.setClass(MainActivity.this,MyActivity.class);
+//                intent.setAction("haha");
+//                startActivity(intent);
             }
         });
         listView.setOnScrollListener(new AbsListView.OnScrollListener() {
