@@ -116,9 +116,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        String string = data.getStringExtra("back");
+        if (data != null) {
 
-        Log.v("zzz",string);
+            String string = data.getStringExtra("back");
+
+            Log.v("zzz",string);
+        }
     }
 
     @Override
