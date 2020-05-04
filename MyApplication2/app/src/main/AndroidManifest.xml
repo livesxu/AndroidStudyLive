@@ -12,7 +12,8 @@
         <activity android:name=".nextActivity"></activity>
         <activity
             android:name=".MyActivity"
-            android:label="MyActivity">
+            android:label="MyActivity"
+            android:launchMode="standard">
             <intent-filter>
                 <action android:name="haha" />
 
