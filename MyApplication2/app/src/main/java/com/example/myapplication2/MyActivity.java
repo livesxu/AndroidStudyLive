@@ -1,6 +1,8 @@
 package com.example.myapplication2;
 
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,6 +10,9 @@ import android.view.View;
 import android.widget.TextView;
 
 public class MyActivity extends AppCompatActivity {
+
+    Test1Receiver receiver;
+    TestReceiver receiver1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +39,29 @@ public class MyActivity extends AppCompatActivity {
                 startActivity(intent1);
             }
         });
+
+
+
+        receiver = new Test1Receiver();
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("com.example.myapplication2.action.testReceiver");
+        intentFilter.setPriority(600);
+        registerReceiver(receiver,intentFilter);
+
+        receiver1000 = new TestReceiver();
+        IntentFilter intentFilter0 = new IntentFilter();
+        intentFilter0.addAction("com.example.myapplication2.action.testReceiver");
+        intentFilter0.setPriority(1000);
+        registerReceiver(receiver1000,intentFilter0);
+    }
+
+    public void clickAction(View view) {
+
+        Intent intent = new Intent();
+        intent.setAction("com.example.myapplication2.action.testReceiver");
+//        intent.setComponent(new ComponentName("com.example.myapplication2","com.example.myapplication2.TestReceiver"));
+        sendOrderedBroadcast(intent,null,new TestEndReceiver(),null,0,"广播消息",null);
+
     }
 
     @Override
@@ -74,7 +102,8 @@ public class MyActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
+        unregisterReceiver(receiver);
+        unregisterReceiver(receiver1000);
         Log.v("zzz","页面销毁");
     }
 }

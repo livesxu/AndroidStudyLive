@@ -41,6 +41,11 @@
                 <data android:scheme="file"/>
             </intent-filter>
         </receiver>
+        <receiver android:name=".TestReceiver">
+            <intent-filter android:priority="1000">
+                <action android:name="com.example.myapplication2.action.testReceiver"/>
+            </intent-filter>
+        </receiver>
     </application>
     <uses-permission android:name="android.permission.RECEIVE_SMS"/>
 </manifest>
