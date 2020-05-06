@@ -64,6 +64,15 @@ public class MyActivity extends AppCompatActivity {
 
     }
 
+    public void serviceAction(View view) {
+
+        Intent intent = new Intent(this,TestService.class);
+
+        startService(intent);
+
+//        stopService(intent);
+    }
+
     @Override
     protected void onStart() {
         super.onStart();

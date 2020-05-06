@@ -24,6 +24,12 @@
             android:onClick="clickAction"
             android:text="点我发送通知"
             />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="serviceAction"
+            android:text="启动服务"
+            />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
