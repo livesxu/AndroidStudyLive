@@ -24,6 +24,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.v("zzz","点击了第二个按钮");
+
+                Intent intent = new Intent(MainActivity.this,FragmentActivity.class);
+                startActivity(intent);
             }
         });
 
