@@ -12,4 +12,12 @@
         android:layout_height="wrap_content"
         android:text="我是初始文本1"/>
 
+    <Button
+        android:id="@+id/button1"
+        app:layout_constraintTop_toBottomOf="@id/text1"
+        app:layout_constraintLeft_toLeftOf="@id/text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="点我回传值至activity"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
