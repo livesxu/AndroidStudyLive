@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class FragmentActivity extends AppCompatActivity {
+public class FragmentActivity extends AppCompatActivity implements TestInterface {
 
     private ArrayList<TextView> textViews;
     @Override
@@ -80,5 +80,11 @@ public class FragmentActivity extends AppCompatActivity {
 
         Fragment2 fragment2 = new Fragment2();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragemt_test,fragment2,"f2").commit();
+    }
+
+    @Override
+    public void showSomeOne(String s) {
+
+        Log.v("zzz","interface" + s);
     }
 }

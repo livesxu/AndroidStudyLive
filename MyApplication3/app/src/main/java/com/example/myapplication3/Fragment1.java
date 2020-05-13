@@ -41,12 +41,19 @@ public class Fragment1 extends Fragment {
 
                 Log.v("zzz","f1里面的点击");
 
-                ((FragmentActivity)mActivity).f1ButtonAction();
+                ((TestInterface)mActivity).showSomeOne("123");
                 return true;
             }
         });
 
         return view;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        getActivity();
     }
 
     public interface CallBack{
@@ -60,4 +67,13 @@ public class Fragment1 extends Fragment {
         callBack.getResult("回传的某个值");
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
 }
