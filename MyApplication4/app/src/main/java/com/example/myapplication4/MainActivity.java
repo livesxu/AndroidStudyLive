@@ -3,6 +3,8 @@ package com.example.myapplication4;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.telecom.Call;
 import android.util.Log;
 import android.widget.ImageView;
@@ -15,6 +17,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -26,6 +29,17 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
+
+    private Handler handler = new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(@NonNull Message message) {
+
+            Bitmap bitmap = (Bitmap)message.obj;
+            ImageView imageView = findViewById(R.id.imgV);
+            imageView.setImageBitmap(bitmap);
+            return false;
+        }
+    });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,13 +79,26 @@ public class MainActivity extends AppCompatActivity {
 
         Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
 
-        runOnUiThread(new Runnable() {
+//        Message message = new Message();
+//        message.obj = bitmap;
+//        handler.sendMessage(message);
+
+        handler.post(new Runnable() {
             @Override
             public void run() {
+
                 ImageView imageView = findViewById(R.id.imgV);
                 imageView.setImageBitmap(bitmap);
             }
         });
+
+//        runOnUiThread(new Runnable() {
+//            @Override
+//            public void run() {
+//                ImageView imageView = findViewById(R.id.imgV);
+//                imageView.setImageBitmap(bitmap);
+//            }
+//        });
 
 
 
