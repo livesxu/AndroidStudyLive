@@ -10,6 +10,8 @@ import android.util.Log;
 import android.widget.ImageView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -56,41 +58,49 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
 
 
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
+//            new Thread(new Runnable() {
+//                @Override
+//                public void run() {
+//                    try {
                         getRequest();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }).start();
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }).start();
 
     }
 
-    public void getRequest() throws IOException {
+    public void getRequest() {
 
-        URL url = new URL("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1589708949182&di=c8d330e5619d95a573af39a793a910df&imgtype=0&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2017-10-30%2F59f68513a33ca.jpg");
+        String imgString = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1589708949182&di=c8d330e5619d95a573af39a793a910df&imgtype=0&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2017-10-30%2F59f68513a33ca.jpg";
+//        URL url = new URL(imgString);
 
-        HttpURLConnection connection = (HttpURLConnection)url.openConnection();
+        //https://github.com/nostra13/Android-Universal-Image-Loader 三方库加载图片
+        ImageLoader imageLoader = ImageLoader.getInstance();
+        ImageLoaderConfiguration imageLoaderConfiguration = new ImageLoaderConfiguration.Builder(getApplicationContext()).build();
+        imageLoader.init(imageLoaderConfiguration);
+        ImageView imageView = findViewById(R.id.imgV);
+        imageLoader.displayImage(imgString,imageView);
 
-        InputStream inputStream = connection.getInputStream();
-
-        Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
-
-//        Message message = new Message();
-//        message.obj = bitmap;
-//        handler.sendMessage(message);
-
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-
-                ImageView imageView = findViewById(R.id.imgV);
-                imageView.setImageBitmap(bitmap);
-            }
-        });
+//        HttpURLConnection connection = (HttpURLConnection)url.openConnection();
+//
+//        InputStream inputStream = connection.getInputStream();
+//
+//        Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+//
+////        Message message = new Message();
+////        message.obj = bitmap;
+////        handler.sendMessage(message);
+//
+//        handler.post(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//                ImageView imageView = findViewById(R.id.imgV);
+//                imageView.setImageBitmap(bitmap);
+//            }
+//        });
 
 //        runOnUiThread(new Runnable() {
 //            @Override
