@@ -1,21 +1,24 @@
 package com.example.myapplication3;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.view.View;
 import android.widget.TextView;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import jp.wasabeef.recyclerview.animators.SlideInDownAnimator;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class RecyclerActivity extends AppCompatActivity {
 
@@ -76,6 +79,33 @@ public class RecyclerActivity extends AppCompatActivity {
                 break;
         }
 
+        getRequest();
+
         return true;
+    }
+
+    public void getRequest(){
+
+        OkHttpClient okHttpClient = new OkHttpClient();
+        Request request = new Request.Builder().url("http://192.168.200.103:8080/info").build();
+
+        okHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+                Log.v("zzz","请求失败：" + e.getMessage());
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+
+                if (response.isSuccessful()){
+
+                    String string = response.body().string();
+
+                    Log.v("zzz",string);
+                }
+            }
+        });
     }
 }
