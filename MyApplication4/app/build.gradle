@@ -45,4 +45,8 @@ dependencies {
     implementation 'com.squareup.okio:okio:1.17.4'
 
     implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+
+    implementation 'com.ogaclejapan.smarttablayout:library:2.0.0@aar'
+    //Optional: see how to use the utility.
+    implementation 'com.ogaclejapan.smarttablayout:utils-v4:2.0.0@aar'
 }
