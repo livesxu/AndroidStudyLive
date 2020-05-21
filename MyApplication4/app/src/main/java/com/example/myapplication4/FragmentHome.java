@@ -10,12 +10,40 @@ import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 public class FragmentHome extends Fragment {
+
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        Log.v("zzz","home onCreate");
+        EventBus.getDefault().register(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.ASYNC)
+    public void onMessage (String event) {
+
+        Log.v("zzz","收到event + " + event);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        Log.v("zzz","home onDestroy");
+
+        EventBus.getDefault().unregister(this);
+    }
 
     @Nullable
     @Override
