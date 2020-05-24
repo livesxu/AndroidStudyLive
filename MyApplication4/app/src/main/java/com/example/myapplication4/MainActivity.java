@@ -5,19 +5,28 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.telecom.Call;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+
+import org.greenrobot.eventbus.EventBus;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +34,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -73,15 +83,16 @@ public class MainActivity extends AppCompatActivity {
 
     public void getRequest() {
 
-        String imgString = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1589708949182&di=c8d330e5619d95a573af39a793a910df&imgtype=0&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2017-10-30%2F59f68513a33ca.jpg";
-//        URL url = new URL(imgString);
-
-        //https://github.com/nostra13/Android-Universal-Image-Loader 三方库加载图片
+        //加载图片
+//        String imgString = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1589708949182&di=c8d330e5619d95a573af39a793a910df&imgtype=0&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2017-10-30%2F59f68513a33ca.jpg";
+////        URL url = new URL(imgString);
+//
+//        //https://github.com/nostra13/Android-Universal-Image-Loader 三方库加载图片
         ImageLoader imageLoader = ImageLoader.getInstance();
         ImageLoaderConfiguration imageLoaderConfiguration = new ImageLoaderConfiguration.Builder(getApplicationContext()).build();
         imageLoader.init(imageLoaderConfiguration);
-        ImageView imageView = findViewById(R.id.imgV);
-        imageLoader.displayImage(imgString,imageView);
+//        ImageView imageView = findViewById(R.id.imgV);
+//        imageLoader.displayImage(imgString,imageView);
 
 //        HttpURLConnection connection = (HttpURLConnection)url.openConnection();
 //
@@ -112,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
+//         //网络请求
 //        OkHttpClient okHttpClient = new OkHttpClient();
 //        Request request = new Request.Builder().url("http://192.168.200.103:8080/info").build();
 //

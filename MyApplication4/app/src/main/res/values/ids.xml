@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <item name="recycle1" type="id"/>
+    <item name="line1" type="id"/>
+    <item name="title1" type="id"/>
+    <item name="img1" type="id"/>
 </resources>
