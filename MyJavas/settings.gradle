@@ -1,0 +1,4 @@
+rootProject.name='MyJavas'
+include ':app'
+include ':Javalib'
+include ':JavaTest'
