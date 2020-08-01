@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/ic_launcher"
+        android:layout_above="@id/inputs"
+        android:paddingBottom="20dp"
+        android:layout_centerHorizontal="true"
+        />
+
+    <LinearLayout
+        android:id="@+id/inputs"
+        android:layout_centerVertical="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lines="1"
+            android:lineHeight="50dp"
+            android:inputType="phone"
+            android:maxLength="15"
+            android:drawableLeft="@drawable/tf_left_item"
+            android:drawablePadding="10dp"
+            />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lines="1"
+            android:lineHeight="50dp"
+            android:inputType="textPassword"
+            android:maxLength="20"
+            android:drawableLeft="@drawable/tf_left_item"
+            android:drawablePadding="10dp"
+            />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/loginButton"
+        android:paddingTop="20dp"
+        android:layout_below="@id/inputs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="登录"
+        android:layout_centerHorizontal="true"
+        />
+
+
+</RelativeLayout>
